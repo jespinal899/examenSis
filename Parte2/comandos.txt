@@ -1,0 +1,72 @@
+# Construir la imagen
+docker build -t mi-app-python:examen .
+
+# Ejecutar el contenedor
+docker run -d -p 5000:5000 --name app-examen mi-app-python:examen
+
+# Probar endpoint raíz
+curl http://localhost:5000/
+
+# Probar endpoint de salud
+curl http://localhost:5000/salud
+
+
+
+
+
+
+
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Instale la versión más reciente de PowerShell para obtener nuevas características y mejoras. https://aka.ms/PSWindows
+
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> docker build -t mi-app-python:examen .
+[+] Building 0.2s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.1s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/ue192ftzp71ycxsbfabt8smdv
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> cd C:\Users\jorge\OneDrive\Documents\parte2
+PS C:\Users\jorge\OneDrive\Documents\parte2> docker build -t mi-app-python:examen .
+[+] Building 2.0s (12/12) FINISHED                                                                 docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 513B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.11-slim                                                1.4s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 34B                                                                                   0.0s
+ => [1/6] FROM docker.io/library/python:3.11-slim@sha256:e4676722fba839e2e5cdb844a52262b43e90e56dbd55b7ad953ee361  0.0s
+ => => resolve docker.io/library/python:3.11-slim@sha256:e4676722fba839e2e5cdb844a52262b43e90e56dbd55b7ad953ee361  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 58B                                                                                   0.0s
+ => CACHED [2/6] RUN useradd -m appuser                                                                            0.0s
+ => CACHED [3/6] WORKDIR /app                                                                                      0.0s
+ => CACHED [4/6] COPY requirements.txt .                                                                           0.0s
+ => CACHED [5/6] RUN pip install --no-cache-dir -r requirements.txt                                                0.0s
+ => CACHED [6/6] COPY app.py .                                                                                     0.0s
+ => exporting to image                                                                                             0.2s
+ => => exporting layers                                                                                            0.0s
+ => => exporting manifest sha256:d90a622f694deec1f73cb893573fa49a1d78ceb25a0d4f9efc2220b19a37bc92                  0.0s
+ => => exporting config sha256:288d737db54d269eef242f300a9772963ed816baa662a8ad3ac07a41c0160e9d                    0.0s
+ => => exporting attestation manifest sha256:8523ae2d1a356ae225f245335846e0e524f52b1089d662406f506385304eb0e0      0.0s
+ => => exporting manifest list sha256:ebb4106c528e83d5e05e783ded7883642477861919f73b932273fc8941bd1075             0.0s
+ => => naming to docker.io/library/mi-app-python:examen                                                            0.0s
+ => => unpacking to docker.io/library/mi-app-python:examen                                                         0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/c7gairinvbpxn0sc6jm7iz00v
+PS C:\Users\jorge\OneDrive\Documents\parte2> docker run -d -p 5000:5000 --name app-examen mi-app-python:examen
+556dfbcf3ced931907e702469c544806cbf55afdf2a8f16b8745f71c3f0606f0
+PS C:\Users\jorge\OneDrive\Documents\parte2> curl http://localhost:5000/
+
+
+{"mensaje":"Examen Docker","estudiante":"Jorge Ariel Espinal"}
+
+PS C:\Users\jorge\OneDrive\Documents\parte2> curl http://localhost:5000/salud
+
+{"status":"ok"}
